@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj315tlcx2l0l"]
+
+[ext_resource type="Script" uid="uid://ckbvse4g4wt1" path="res://Scenes/Entities/components/camera_component.gd" id="1_b5tgi"]
+
+[node name="CameraComponent" type="Node2D"]
+script = ExtResource("1_b5tgi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

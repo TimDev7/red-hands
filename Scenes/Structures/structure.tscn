@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ded4pjwal74ik"]
+
+[ext_resource type="Script" uid="uid://67c2hk15j8ku" path="res://Scenes/Structures/structure.gd" id="1_x34kh"]
+[ext_resource type="PackedScene" uid="uid://lf1jg2db4vdj" path="res://Scenes/Objects/world_tile_map.tscn" id="2_d6m2l"]
+
+[node name="Structure" type="Node2D" node_paths=PackedStringArray("world_tile_map")]
+script = ExtResource("1_x34kh")
+world_tile_map = NodePath("WorldTileMap")
+
+[node name="WorldTileMap" parent="." instance=ExtResource("2_d6m2l")]
+position = Vector2(-80, -80)
+
+[node name="ChunkArea" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+color = Color(0, 0.36862746, 0, 0.3647059)
+metadata/_edit_lock_ = true

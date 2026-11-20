@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableData" load_steps=3 format=3 uid="uid://5phkir2rcvwp"]
+
+[ext_resource type="Texture2D" uid="uid://v7by0ukdmsyi" path="res://Assets/Textures/Items/items/test6.png" id="1_5odfd"]
+[ext_resource type="Script" uid="uid://ymrt3ceu5eio" path="res://Scenes/Items/scripts/consumable_data.gd" id="1_drbs3"]
+
+[resource]
+script = ExtResource("1_drbs3")
+effect = 1
+effect_value = 10.0
+id = "pemmican"
+name = "Pemmican"
+description = "Small piece of pemmican. Very nutritious."
+icon = ExtResource("1_5odfd")
+metadata/_custom_type_script = "uid://ymrt3ceu5eio"

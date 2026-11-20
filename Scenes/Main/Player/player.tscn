@@ -1,0 +1,391 @@
+[gd_scene load_steps=34 format=3 uid="uid://bm8ljdsd5exi"]
+
+[ext_resource type="Script" uid="uid://bwquku0vi2rch" path="res://Scenes/Main/Player/scripts/player.gd" id="1_3udxs"]
+[ext_resource type="Script" uid="uid://dkuek4a5b4svn" path="res://Scenes/Main/Player/scripts/camera_2d.gd" id="2_eia7g"]
+[ext_resource type="PackedScene" uid="uid://bxrdqpeyh5ewx" path="res://Scenes/Entities/components/light_component.tscn" id="2_rixuv"]
+[ext_resource type="Texture2D" uid="uid://bwykvdursfmy4" path="res://Assets/Textures/Character/Movement.png" id="3_2k14a"]
+[ext_resource type="Script" uid="uid://cc4j0c7wpuuyn" path="res://Scenes/Main/Player/scripts/interaction_manager.gd" id="5_3udxs"]
+[ext_resource type="PackedScene" uid="uid://ccqkkgov6p5fl" path="res://Scenes/Debug/scenes/Debug.tscn" id="7_eia7g"]
+[ext_resource type="PackedScene" uid="uid://bt3mfkp71nf1" path="res://Scenes/Entities/components/inventory_component.tscn" id="7_ki7ux"]
+[ext_resource type="PackedScene" uid="uid://df4ai3eh8dybr" path="res://Scenes/Entities/components/shadow_trail_component.tscn" id="8_5v6u1"]
+[ext_resource type="Theme" uid="uid://bhsfa8x3hhktj" path="res://Scenes/UI/themes/basic.tres" id="8_ephah"]
+[ext_resource type="Script" uid="uid://dgnq3y1bfry7k" path="res://Scenes/Main/Player/scripts/pickup_notification_manager.gd" id="9_ephah"]
+[ext_resource type="Script" uid="uid://b0pivkjpq8kiw" path="res://Scenes/Main/Player/inventory_ui.gd" id="10_bmjhj"]
+[ext_resource type="Texture2D" uid="uid://153pe2ihynxi" path="res://Assets/Textures/UI/test.png" id="10_f8eyc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2k14a"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3udxs"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rixuv"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eia7g"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k14a"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(0, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eef4"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(16, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg4ud"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(32, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02f8e"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flpka"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5ufh"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw3e6"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnnju"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kt61"]
+atlas = ExtResource("3_2k14a")
+region = Rect2(32, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gn3kh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3udxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rixuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3udxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eia7g")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k14a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eef4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k14a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg4ud")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02f8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flpka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02f8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5ufh")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw3e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnnju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw3e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kt61")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3udxs"]
+radius = 0.01
+
+[sub_resource type="Animation" id="Animation_idfkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InventoryUI/Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InventoryUI/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_suycu"]
+resource_name = "close"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InventoryUI/Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InventoryUI/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5v6u1"]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InventoryUI/Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InventoryUI/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jcd4f"]
+_data = {
+&"RESET": SubResource("Animation_idfkl"),
+&"close": SubResource("Animation_suycu"),
+&"open": SubResource("Animation_5v6u1")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8eyc"]
+atlas = ExtResource("10_f8eyc")
+region = Rect2(0, 0, 192, 112)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5v6u1"]
+texture = SubResource("AtlasTexture_f8eyc")
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_3udxs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_2k14a")
+
+[node name="LightComponent" parent="." instance=ExtResource("2_rixuv")]
+energy = 1.0
+texture_scale = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -6)
+ignore_rotation = false
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+script = ExtResource("2_eia7g")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gn3kh")
+animation = &"down"
+offset = Vector2(0, -6)
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="InteractionManager" type="Area2D" parent="Components" node_paths=PackedStringArray("player_ref")]
+position = Vector2(0, 6)
+script = ExtResource("5_3udxs")
+player_ref = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/InteractionManager"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_3udxs")
+
+[node name="InventoryComponent" parent="Components" instance=ExtResource("7_ki7ux")]
+inventory_size = 24
+
+[node name="ShadowTrailComponent" parent="Components" instance=ExtResource("8_5v6u1")]
+visible = false
+z_index = -1
+position = Vector2(0, -6)
+
+[node name="Debug" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_eia7g")]
+visible = false
+player = NodePath("..")
+
+[node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GameUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 2
+theme = ExtResource("8_ephah")
+
+[node name="PickupNotificationManager" type="Control" parent="GameUI/Control" node_paths=PackedStringArray("inventory_component", "notifications_table")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 284.0
+grow_vertical = 0
+script = ExtResource("9_ephah")
+inventory_component = NodePath("../../../Components/InventoryComponent")
+notifications_table = NodePath("PanelContainer/Notifications")
+
+[node name="PanelContainer" type="PanelContainer" parent="GameUI/Control/PickupNotificationManager"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(150, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 284.0
+grow_vertical = 0
+
+[node name="Notifications" type="VBoxContainer" parent="GameUI/Control/PickupNotificationManager/PanelContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="InventoryUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inventory_component")]
+layer = 2
+script = ExtResource("10_bmjhj")
+inventory_component = NodePath("../Components/InventoryComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InventoryUI"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_jcd4f")
+}
+
+[node name="Control" type="Control" parent="InventoryUI"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="InventoryUI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4117647)
+
+[node name="PanelContainer" type="PanelContainer" parent="InventoryUI/Control"]
+custom_minimum_size = Vector2(512, 307.2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -153.6
+offset_right = 256.0
+offset_bottom = 153.6
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5v6u1")
+
+[node name="InventorySlots" type="GridContainer" parent="InventoryUI/Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 6
+
+[node name="CombatUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CombatUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="area_entered" from="Components/InteractionManager" to="Components/InteractionManager" method="_on_area_entered"]
+[connection signal="area_exited" from="Components/InteractionManager" to="Components/InteractionManager" method="_on_area_exited"]
+[connection signal="inventory_updated" from="Components/InventoryComponent" to="InventoryUI" method="_on_inventory_component_inventory_updated"]

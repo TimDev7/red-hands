@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://coq3k8exy3vg8"]
+
+[ext_resource type="Texture2D" uid="uid://dihkbsg1dr0mw" path="res://Assets/Textures/Entities/TileMap.png" id="1_y62h6"]
+[ext_resource type="Script" uid="uid://bbasujh2c0ps3" path="res://Scenes/Entities/scripts/sign.gd" id="2_k3hbd"]
+[ext_resource type="PackedScene" uid="uid://bi7cb4pi15fb1" path="res://Scenes/Entities/components/interaction_component.tscn" id="3_6sgkb"]
+[ext_resource type="PackedScene" uid="uid://bxrdqpeyh5ewx" path="res://Scenes/Entities/components/light_component.tscn" id="4_6sgkb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qt57"]
+atlas = ExtResource("1_y62h6")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uhvr"]
+atlas = ExtResource("1_y62h6")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30qgt"]
+atlas = ExtResource("1_y62h6")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6ryu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qt57")
+}],
+"loop": true,
+"name": &"exclamation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uhvr")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30qgt")
+}],
+"loop": true,
+"name": &"question",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3hbd"]
+radius = 16.0
+
+[node name="Sign" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_o6ryu")
+animation = &"exclamation"
+script = ExtResource("2_k3hbd")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("3_6sgkb")]
+hint_text = "E"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_k3hbd")
+
+[node name="LightComponent" parent="." instance=ExtResource("4_6sgkb")]
+
+[connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]

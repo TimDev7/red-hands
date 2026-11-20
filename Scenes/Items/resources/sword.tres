@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://5gj2mjk2j8kj"]
+
+[ext_resource type="Script" uid="uid://cdyir8mw1oowp" path="res://Scenes/Items/scripts/weapon_data.gd" id="1_c2nva"]
+[ext_resource type="Texture2D" uid="uid://bdbkim4cpo8c3" path="res://Assets/Textures/Items/items/test5.png" id="1_eav61"]
+
+[resource]
+script = ExtResource("1_c2nva")
+damage = 5
+extra_dmg_mult = 0.2
+type = 1
+id = "sword"
+name = "Sword"
+description = "Regular sword."
+icon = ExtResource("1_eav61")
+stack = 1
+metadata/_custom_type_script = "uid://cdyir8mw1oowp"

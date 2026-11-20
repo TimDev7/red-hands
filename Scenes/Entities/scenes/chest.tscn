@@ -1,0 +1,294 @@
+[gd_scene load_steps=23 format=3 uid="uid://dx3fdjdlw5ewx"]
+
+[ext_resource type="Texture2D" uid="uid://dihkbsg1dr0mw" path="res://Assets/Textures/Entities/TileMap.png" id="1_4uxw0"]
+[ext_resource type="Script" uid="uid://bxcpnau01abv8" path="res://Scenes/Entities/scripts/chest.gd" id="1_p5hom"]
+[ext_resource type="PackedScene" uid="uid://blhkykj1nea6r" path="res://Scenes/Entities/components/health_component.tscn" id="2_gl57b"]
+[ext_resource type="PackedScene" uid="uid://c733nmiy8y8mg" path="res://Scenes/Entities/components/hitbox_component.tscn" id="3_p5hom"]
+[ext_resource type="PackedScene" uid="uid://bxrdqpeyh5ewx" path="res://Scenes/Entities/components/light_component.tscn" id="3_xhp14"]
+[ext_resource type="PackedScene" uid="uid://bi7cb4pi15fb1" path="res://Scenes/Entities/components/interaction_component.tscn" id="4_xhp14"]
+[ext_resource type="PackedScene" uid="uid://bm5hxnw3achu0" path="res://Scenes/Entities/components/loot_component.tscn" id="7_xhp14"]
+[ext_resource type="Script" uid="uid://b2bm1dmhte3sv" path="res://Scenes/Items/scripts/item_data.gd" id="8_n0fs6"]
+[ext_resource type="Resource" uid="uid://cyd08rdto6fsx" path="res://Scenes/Items/resources/wood.tres" id="9_dj6um"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl57b"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmybn"]
+atlas = ExtResource("1_4uxw0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewriv"]
+atlas = ExtResource("1_4uxw0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4s6j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmybn")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewriv")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bppxg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"closed"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dj6um"]
+resource_name = "closed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.4045111, 0.40451115, 0.4045111, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"closed"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n0fs6"]
+resource_name = "death"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.60701716, 0.54817975, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6m41v"]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"opened"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6uso"]
+_data = {
+&"RESET": SubResource("Animation_bppxg"),
+&"closed": SubResource("Animation_dj6um"),
+&"death": SubResource("Animation_n0fs6"),
+&"open": SubResource("Animation_6m41v")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gl57b"]
+radius = 24.0
+
+[sub_resource type="GDScript" id="GDScript_p5hom"]
+script/source = "extends Node
+@export var active:bool = false
+@export var chest:StaticBody2D
+
+
+func _input(event: InputEvent) -> void:
+	if !active:
+		return
+	if event is InputEventKey and event.is_action_pressed(\"num_1\"):
+		var player:= Player.new()
+		chest.interactable_component.interacted.emit(player)
+"
+
+[sub_resource type="Animation" id="Animation_p5hom"]
+resource_name = "damage"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.7341848, 0.69103616, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.08726646259971647, 0.0, -0.08726646259971647, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhp14"]
+_data = {
+&"damage": SubResource("Animation_p5hom")
+}
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_p5hom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gl57b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p4s6j")
+animation = &"closed"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i6uso")
+}
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="LightComponent" parent="Components" instance=ExtResource("3_xhp14")]
+
+[node name="HealthComponent" parent="Components" instance=ExtResource("2_gl57b")]
+
+[node name="HitboxComponent" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("3_p5hom")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitboxComponent"]
+
+[node name="InteractableComponent" parent="Components" instance=ExtResource("4_xhp14")]
+hint_text = "F"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/InteractableComponent"]
+shape = SubResource("CircleShape2D_gl57b")
+
+[node name="LootComponent" parent="Components" instance=ExtResource("7_xhp14")]
+loot_table = Array[ExtResource("8_n0fs6")]([ExtResource("9_dj6um"), ExtResource("9_dj6um")])
+
+[node name="DebugNode" type="Node" parent="." node_paths=PackedStringArray("chest")]
+script = SubResource("GDScript_p5hom")
+chest = NodePath("..")
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xhp14")
+}
+
+[connection signal="died" from="Components/HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="Components/HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="interacted" from="Components/InteractableComponent" to="." method="_on_interactable_component_interacted"]

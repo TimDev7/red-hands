@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=3 uid="uid://cphpebvumidf6"]
+
+[ext_resource type="Theme" uid="uid://bhsfa8x3hhktj" path="res://Scenes/UI/themes/basic.tres" id="1_hlnnm"]
+[ext_resource type="Script" uid="uid://b2ragl7yy7osr" path="res://Scenes/UI/scripts/slot.gd" id="3_5gqae"]
+[ext_resource type="PackedScene" uid="uid://bj315tlcx2l0l" path="res://Scenes/Entities/components/camera_component.tscn" id="4_5gqae"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ahaa"]
+load_path = "res://.godot/imported/Slot1.png-f4825ef5b0db10939248a5b0a9fd9aad.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5gqae"]
+texture = SubResource("CompressedTexture2D_3ahaa")
+
+[sub_resource type="Animation" id="Animation_4unr5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icons/Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y08nt"]
+resource_name = "hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icons/Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_7bsc7"]
+resource_name = "unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icons/Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s7lqj"]
+_data = {
+&"RESET": SubResource("Animation_4unr5"),
+&"hover": SubResource("Animation_y08nt"),
+&"unhover": SubResource("Animation_7bsc7")
+}
+
+[node name="Slot" type="PanelContainer"]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_5gqae")
+script = ExtResource("3_5gqae")
+
+[node name="CameraComponent" parent="." instance=ExtResource("4_5gqae")]
+position = Vector2(24, 24)
+
+[node name="Icons" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Icons"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 5
+
+[node name="MovableIcon" type="TextureRect" parent="Icons"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+
+[node name="AmountLabel" type="Label" parent="."]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_hlnnm")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s7lqj")
+}
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="gui_input" from="Icons/Icon" to="." method="_on_icon_gui_input"]

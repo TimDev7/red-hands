@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bhsfa8x3hhktj"]
+
+[ext_resource type="FontFile" uid="uid://c8sc0nibjd6im" path="res://Assets/Font/marimpa.regular.ttf" id="1_d1pc8"]
+
+[resource]
+default_font = ExtResource("1_d1pc8")
+Label/constants/outline_size = 8

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxrdqpeyh5ewx"]
+
+[ext_resource type="Script" uid="uid://cc3behe1bblsi" path="res://Scenes/Entities/components/light_component.gd" id="1_ldm6j"]
+
+[sub_resource type="Gradient" id="Gradient_ldm6j"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mwjyi"]
+gradient = SubResource("Gradient_ldm6j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[node name="LightComponent" type="PointLight2D"]
+enabled = false
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.47058824)
+texture = SubResource("GradientTexture2D_mwjyi")
+script = ExtResource("1_ldm6j")
