@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bphgukl5gnkle"]
+
+[ext_resource type="Script" uid="uid://c54nd7j7rq3hk" path="res://Scenes/SplashScreen/splash_screen.gd" id="1_bio1j"]
+[ext_resource type="Texture2D" uid="uid://ce4ybqc8ibmev" path="res://Assets/Textures/SplashScreen/avatar.png" id="2_5b83x"]
+
+[node name="SplashScreen" type="Node" unique_id=437664085]
+script = ExtResource("1_bio1j")
+
+[node name="Control" type="Control" parent="." unique_id=1370135211]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1042257141]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1234698469]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer" unique_id=302937609]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 32
+text = "Game developed by Red Hands"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer" unique_id=573398336]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("2_5b83x")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer" unique_id=1682497088]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 32
+text = "No AI used except
+Code"
+horizontal_alignment = 1
+autowrap_mode = 3

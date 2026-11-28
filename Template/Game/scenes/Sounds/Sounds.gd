@@ -1,6 +1,9 @@
 extends Node
 class_name Sounds
 
+const SPLASH_SCREEN = preload("uid://2r1eb2cqoo7k")
+
+
 var music_mute: bool = false
 var sfx_mute: bool = false
 

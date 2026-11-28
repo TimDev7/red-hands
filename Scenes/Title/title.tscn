@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://catjqro50wnag"]
+
+[ext_resource type="Script" uid="uid://c272iya54kxgq" path="res://Scenes/Title/title.gd" id="1_bi871"]
+
+[node name="Title" type="Node" unique_id=297415980]
+script = ExtResource("1_bi871")
+
+[node name="UI" type="Control" parent="." unique_id=1080661242]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Windows" type="CanvasLayer" parent="." unique_id=1696196245]
